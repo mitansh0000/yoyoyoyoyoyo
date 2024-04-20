@@ -1,0 +1,158 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Proposal Page</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Pacifico:wght@200;400;600&display=swap");
+            @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: pink;
+                text-align: center;
+            }
+            .heart {
+  position: fixed;
+  font-size: 1.5rem;
+  top: -1vh;
+  transform: translateY(0);
+  animation: fall 3s linear forwards;
+}
+            header {
+                background-color: #ff69b4;
+                color: white;
+                padding: 20px 0;
+                margin-bottom: 100px;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 36px;
+            }
+            p {
+                font-size: 18px;
+            }
+            .response-buttons {
+                position: relative;
+            }
+            .response-buttons button {
+                margin-top: 50px;
+                padding: 15px 30px;
+                font-size: 18px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #ff69b4;
+                color: white;
+                transition: background-color 0.3s;
+            
+            }
+            .response-buttons button:hover {
+                background-color: #ff407b;
+            }
+            .cracked {
+                background: url('crack.png') center/cover no-repeat;
+                animation: buttonCrack 0.5s forwards;
+                pointer-events: none;
+            }
+
+            @keyframes buttonCrack {
+                0% { transform: scale(1); }
+                50% { transform: scale(0.9); }
+                100% { transform: scale(0); }
+            }
+            @keyframes fall {
+  from {
+     transform: translateY(0vh) translateX(-10vw); 
+  }
+  to {
+     transform: translateY(105vh) translateX(10vw); 
+  }
+} 
+        </style>
+<body>
+    <header>
+        <h1>HELLOW ❤️</h1>
+    </header>
+    <div class="container">
+        <section>
+            <video id="video1" autoplay loop preload="auto" muted>
+                <source src="hui.mp4" type="video/mp4">
+            </video>
+            <div class="response-buttons">
+                <button id="yesButton" onclick="respondToProposal('Yes')">Yes ❤️</button>
+                <button id="noButton" onclick="crackNoButton(this)" class="no">No 💔</button>
+            </div>
+        </section>
+
+        <section id="responseSection" style="display: none;">
+            <h2>Her Response</h2>
+            <p id="responseMessage"></p>
+        </section>
+    </div>
+
+    <script>
+        // Function to record button clicks
+        function recordButtonClick(buttonId) {
+            // Get current timestamp
+            const timestamp = new Date().toISOString();
+
+            // Construct the data to record
+            const data = {
+                buttonId: buttonId,
+                timestamp: timestamp
+            };
+
+            // Send the data to a server for logging or store it locally
+            console.log("Button Click Recorded:", data);
+        }
+
+        // JavaScript for interactivity
+        function respondToProposal(response) {
+            recordButtonClick(response); // Record the button click
+            if (response === 'Yes') {
+                window.location.href = "video_page.html";
+            } else {
+                const responseMessage = document.getElementById('responseMessage');
+                const responseSection = document.getElementById('responseSection');
+                responseSection.style.display = 'block';
+            }
+        }
+
+        function crackNoButton(button) {
+            recordButtonClick("No"); // Record the button click
+            button.classList.add('cracked');
+            setTimeout(() => {
+                button.disabled = true;
+            }, 500);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            
+            heart.innerText = '🥺';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>

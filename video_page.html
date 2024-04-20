@@ -1,0 +1,78 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Proposal Page</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Pacifico:wght@200;400;600&display=swap");
+            @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: pink;
+                text-align: center;
+            }
+            .heart {
+  position: fixed;
+  font-size: 1.5rem;
+  top: -1vh;
+  transform: translateY(0);
+  animation: fall 3s linear forwards;
+}
+            header {
+                background-color: #ff69b4;
+                color: white;
+                padding: 20px 0;
+                margin-bottom: 100px;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            @keyframes fall {
+  from {
+     transform: translateY(0vh) translateX(-10vw); 
+  }
+  to {
+     transform: translateY(105vh) translateX(10vw); 
+  }
+} 
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>❤️</h1>
+        </header>
+        <div class="container">
+            <video id="video1" width="500px" height="500px" autoplay loop preload="auto" muted>
+                <source src="hug-extasyxx.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <script>
+            function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+  
+  heart.innerText = '💗';
+  
+  document.body.appendChild(heart);
+  
+  setTimeout(() => {
+              heart.remove();
+              }, 5000);
+}
+
+setInterval(createHeart, 300);
+        </script>
+    </body>
+    </html>
